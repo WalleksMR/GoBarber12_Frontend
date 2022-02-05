@@ -3,6 +3,7 @@ import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import { FiArrowLeft, FiMail, FiUser, FiLock } from 'react-icons/fi';
 import * as Yup from 'yup';
+import { ValidationError } from 'yup';
 import logoImg from '../../assets/logo.svg';
 import getValidationError from '../../utils/getValidationErrors';
 import { Container, Content, Background } from './styles';
@@ -29,7 +30,7 @@ const SingUp: React.FC = () => {
         abortEarly: false,
       });
     } catch (err) {
-      const errors = getValidationError(err);
+      const errors = getValidationError(err as ValidationError);
       formRef.current?.setErrors(errors);
     }
   }, []);
